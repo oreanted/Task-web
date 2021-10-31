@@ -1,0 +1,19 @@
+body {
+  font: 400 1.4rem 'Serif', Verdana, Helvetica, sans-serif;
+}
+.btn-change7{
+    height: 50px;
+    width: 150px;
+    background: lightseagreen;
+    margin: 20px;
+    float: left;
+    border:0px;
+    color:#fff;
+    box-shadow: 0 0 1px #ccc;
+    -webkit-transition-duration: 0.5s;
+    -webkit-transition-timing-function: linear;
+    box-shadow:0px 0 0 #31708f  inset;
+}
+.btn-change7:hover{
+    box-shadow:100px 0 0 #31708f inset;
+}

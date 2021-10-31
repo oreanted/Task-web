@@ -1,7 +1,86 @@
 {% extends 'base.html' %}
+{% load staticfiles %}
 {% block content %}
+
   <title>Contact Us</title>
-  <h1>Welcome to contact page this is taskmate website </h1>
+<div class="container">
+  <h1>Welcome to  is task-mate website </h1>
+</div>
+<div class="container h-100 bg-primary ">
+	<div class="d-flex justify-content-center">
+		<div class="card mt-5 col-md-4 animated bounceInDown myForm">
+			<div class="card-header ">
+<form method="POST">
+    {% csrf_token %}
+<div class="form-group mt-5  m-5">
+    <label for="exampleInputEmail1">Email address</label>
+    <input type="email" class="form-control" id="exampleInputEmail1"  aria-describedby="emailHelp" name="email" placeholder="Enter email" >
+  </div>
+<div class="form-group green-border-focus mt-3 m-5">
+    <label for="exampleFormControlTextarea1">YOUR_QUERY</label>
+    <textarea class="form-control" id="exampleFormControlTextarea1" rows="4"  name="query"></textarea>
+  </div>
+     <link href="{% static '/css/button.css' %}" rel="stylesheet">
+    <button type="submit" class="btn btn-danger m-5  mt-2"><svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" fill="currentColor" class="bi bi-envelope" viewBox="0 0 20 20">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2zm13 2.383-4.758 2.855L15 11.114v-5.73zm-.034 6.878L9.271 8.82 8 9.583 6.728 8.82l-5.694 3.44A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.739zM1 11.114l4.758-2.876L1 5.383v5.73z"/>
+</svg>SEND</button>
+</form>
+            </div>
+        </div>
+    </div>
+</div>
+{% if query %}
+<div class="row mt-3 m-3" >
+    {% for obj in query %}
+    <div class="col-sm-3">
+<div class="card border border-warning border border-5 " style="width: 18rem;">
+  <div class="card-body">
+  </div>
+  <ul class="group-flush ">
+      <li class="group-item m-2">Your_Query: {{obj.query}}</li>
+    <li class="group-item m-2">{{ obj.date }}</li>
+    <li class="group-item m-2">{{ obj.time }}</li>
+
+    <li> <a href="{% url 'delete_query' obj.id %}"><button type="button" class="btn btn-outline-danger"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg></button></a></li>
+
+  </ul>
+  </div>
+  </div>
+
+{% endfor %}
+      {% endif %}
+
+   <div class="row mt-5 m-5">
+       <div class="col-sm-4">
+   <div class="card  p-3 border border-success  "style="width: 18rem;">
+  <img src="{% static 'image/pic1.jpg' %}" class="card-img-top" alt="computer">
+  <div class="card-body">
+    <h5 class="card-title s-6">INFO</h5>
+    <p class="card-text text-info">We will help any query regarding to problem this is Task Add to reminder What will do </p>
+  </div>
+  </div>
+</div>
+    <div class="col-sm-4">
+ <div class="card  p-3 border border-success " style="width: 18rem;">
+ <img src="{% static 'image/pic2.jpg' %}" class="card-img-top" alt="task">
+  <div class="card-body">
+    <h5 class="card-title s-6">TASK-LIST</h5>
+    <p class="card-text">How to manage task from this website and how to Edit Task and Delete when task is completed</p>
+  </div>
+ </div>
+ </div>
+       <div class="col-sm-4">
+<div class="card  p-3 border border-success " style="width: 18rem;">
+ <img src="{% static 'image/pic3.jpg' %}" class="card-img-top" alt="task1">
+  <div class="card-body">
+    <h5 class="card-title s-6">CONTACT</h5>
+    <p class="card-text text-blue">This is contact page to summit your query  and we will response soon  .</p>
+  </div>
+</div>
+</div>
+   </div>
+</div>
 {% endblock %}
-
-

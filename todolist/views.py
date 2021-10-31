@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Task
-from .forms import TaskForm
+from .models import Task, Query
+from .forms import TaskForm, QueryForm
 from django.contrib import messages
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -73,10 +73,21 @@ def pending_task(request, task_id):
 
 @login_required()
 def contact(request):
-    context = {
-        'welcome text': "welcome !!!!",
-    }
-    return render(request, 'contact.html', context)
+
+    if request.method == "POST":
+        form = QueryForm(request.POST or None)
+        if form.is_valid():
+            form.save()
+        return redirect('contact')
+    else:
+        query = Query.objects.all
+        return render(request, 'contact.html', {'query': query})
+
+
+def delete_query(request, query_id):
+    query1 = Query.objects.get(pk=query_id)
+    query1.delete()
+    return redirect('contact')
 
 
 def about(request):
